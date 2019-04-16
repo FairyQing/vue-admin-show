@@ -1,0 +1,47 @@
+
+
+query CarSourceList($namelike:String!,$paginator: paginator)
+{
+CarSourceList(qfilter:{
+  combinator:AND
+  key:"name"
+  operator:LIKE
+  value:$namelike
+},paginator: $paginator){
+    totalPages
+    totalElements
+    content{
+      address
+      type
+      number
+      id
+      name
+      tel
+      disabled
+    }
+  }}
+
+mutation addCar($carsource: CarSource_!){
+  mlshop_addcarsource(carsource: $carsource){
+    id
+  }
+ }
+
+
+mutation editCar($carsource: CarSource_!){
+  mlshop_updatecarsource(carsource: $carsource){
+    id
+  }
+}
+
+mutation disabled($carsource: CarSource_!){
+  mlshop_disablecarsource(carsource: $carsource){
+    disabled
+  }
+}
+
+mutation enabled($carsource: CarSource_!){
+  mlshop_enablcarsource(carsource: $carsource){
+    disabled
+  }
+}

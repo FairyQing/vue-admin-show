@@ -1,0 +1,78 @@
+mutation addCommunication($addCommunication:CarCommunication_!){
+  mlshop_addcarcommunication(carcommunication:$addCommunication){
+    carType
+    status
+    type
+    customer{
+      id
+      weixinid
+      weixinnick
+      name
+      level
+      tel
+    }
+    communicationItems{
+      distributeTime
+      status
+      level
+      salesman{
+        name
+      }
+      administ{
+        name
+      }
+    }
+  }
+}
+
+
+
+query carCom($carCommunication:paginator){
+  CarCommunicationList(paginator:$carCommunication){
+    totalPages
+    totalElements
+    content{
+      status
+      type
+      customer{
+        level
+        name
+        weixinid
+        weixinnick
+        tel
+      }
+      communicationItems{
+        director
+        distributeTime
+        administ{
+          name
+        }
+        salesman{
+          name
+        }
+      }
+    }
+  }
+}
+
+query salesList{
+  SalesmanList{
+    content{
+      id
+      name
+    }
+  }
+}
+
+
+query customerList{
+  CustomerList{
+    content{
+      id
+      name
+      tel
+      weixinid
+      weixinnick
+    }
+  }
+}

@@ -1,0 +1,73 @@
+
+query shopList($namelike:String!,$paginator:paginator){
+  ShopList(qfilter:{
+    combinator:AND
+    key:"name"
+    operator:LIKE
+    value:$namelike
+  },paginator:$paginator){
+    totalPages
+    totalElements
+    content{
+      id
+      address
+      name
+      shopTypeEnum
+      tel
+      number
+      disabled
+      createtime(orderBy:ASC)
+    }
+  }
+}
+
+
+mutation addShop($shop:Shop_!){
+  mlshop_addshop(shop:$shop) {
+    id
+    name
+    tel
+    number
+    address
+    shopTypeEnum
+  }
+}
+
+mutation updateShop($update:Shop_!){
+  mlshop_updateshop(shop:$update){
+    id
+    name
+    shopTypeEnum
+    address
+    number
+    tel
+    createtime
+  }
+}
+
+
+mutation  disabledShop($dis:Shop_!){
+  mlshop_disableshop(shop:$dis){
+    id
+    address
+    name
+    shopTypeEnum
+    tel
+    number
+    disabled
+    createtime
+  }
+}
+
+mutation  enabledShop($en:Shop_!){
+  mlshop_enablshop(shop:$en){
+    id
+    disabled
+    name
+    address
+    tel
+    number
+    shopTypeEnum
+    createtime
+  }
+}

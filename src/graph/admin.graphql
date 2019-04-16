@@ -1,0 +1,59 @@
+query AdministList($namelike:String!,$paginator: paginator)
+{
+  AdministList(qfilter:{
+    combinator:AND
+    key:"name"
+    operator:LIKE
+    value:$namelike
+  },paginator: $paginator){
+    totalPages
+    totalElements
+    content{
+      number
+      id
+      name
+      disabled
+      tel
+      level
+    }
+  }}
+
+
+mutation administ($administ: Administ_!){
+  mlshop_addadminist(administ: $administ){
+    id
+    name
+    tel
+    disabled
+    level
+  }
+}
+
+
+
+mutation updateAdmin($admin:Administ_!){
+  mlshop_updateadminist(administ:$admin){
+    id
+    disabled
+    name
+    number
+    tel
+    level
+  }
+}
+
+
+mutation disAdmin($disAdmin:Administ_!){
+  mlshop_disableadminist(administ:$disAdmin)
+  {
+    id
+  }
+}
+
+
+mutation enAdmin($enAdmin:Administ_!){
+  mlshop_enabladminist(administ:$enAdmin)
+  {
+    id
+  }
+}
